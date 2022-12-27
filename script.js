@@ -61,13 +61,11 @@ function boundaryCollide(shape) {
     let t = shape.y
     let b = t + shape.height
 
-    if(t <= 0 || b >= canvas.height) {
-        shape.velocity.y *= -1;
-    }
+    if(t <= 0) shape.velocity.y = Math.abs(shape.velocity.y)
+    else if(b >= canvas.height) shape.velocity.y = -1 * Math.abs(shape.velocity.y)
 
-    if(l <= 0 || r >= canvas.width) {
-        shape.velocity.x *= -1; 
-    }
+    if(l <= 0) shape.velocity.x = Math.abs(shape.velocity.x)
+    else if(r >= canvas.width) shape.velocity.x = -1 * Math.abs(shape.velocity.x)
 
     shape.angle = Math.atan2(shape.velocity.y, shape.velocity.x);
 }
